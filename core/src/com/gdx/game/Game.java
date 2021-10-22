@@ -17,6 +17,7 @@ public class Game extends ApplicationAdapter {
 
 
 	BottomBar bottomBar;
+	Player player;
 
 	@Override
 	public void create () {
@@ -27,6 +28,9 @@ public class Game extends ApplicationAdapter {
 
 		bottomBar = new BottomBar();
 		bottomBar.create();
+
+		player = new Player();
+		player.create();
 	}
 
 	@Override
@@ -47,6 +51,7 @@ public class Game extends ApplicationAdapter {
 //		font.draw(batch, "Hello LibGDX", 10,20);
 //		batch.end();
 		bottomBar.render(batch);
+		player.render(batch);
 	}
 	
 	@Override
@@ -57,5 +62,6 @@ public class Game extends ApplicationAdapter {
 		shapeRenderer.dispose();
 
 		bottomBar.dispose();
+		player.dispose();
 	}
 }
