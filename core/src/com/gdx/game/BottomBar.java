@@ -12,10 +12,16 @@ public class BottomBar {
 
     int points = 0;
 
+    String nextElementText = "";
+
     public void create()
     {
         renderer = new ShapeRenderer();
         font = new BitmapFont();
+    }
+
+    public void setText(String text) {
+        nextElementText = text;
     }
 
     public void addPoint() {
@@ -37,7 +43,7 @@ public class BottomBar {
         font.setColor(Color.BLACK);
         font.draw(batch,"Points: " + points, 30, 30);
 
-        font.draw(batch, "Next element:", GameConstants.SCREEN_WIDTH - 200, 30);
+        font.draw(batch, "Next element: " + nextElementText, GameConstants.SCREEN_WIDTH - 200, 30);
 
         batch.end();
     }
