@@ -6,4 +6,10 @@ public final class GameConstants {
     public static int PLAYER_SPEED = 10;
     public static int PLAYER_WIDTH = 20;
     public static int PLAYER_HEIGHT = 20;
+
+    public static int ELEMENT_WIDTH = 20;
+    public static int ELEMENT_HEIGHT = 20;
+    public static int ELEMENT_SPEED = 5;
+
+    public static int BOTTOMBAR_HEIGHT = 50;
 }
