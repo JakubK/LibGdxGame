@@ -1,8 +1,6 @@
 package com.gdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,6 +16,7 @@ public class Game extends ApplicationAdapter {
 
 	BottomBar bottomBar;
 	Player player;
+	ElementStorage storage;
 
 	@Override
 	public void create () {
@@ -31,6 +30,9 @@ public class Game extends ApplicationAdapter {
 
 		player = new Player();
 		player.create();
+
+		storage = new ElementStorage();
+		storage.create();
 	}
 
 	@Override
