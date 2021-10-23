@@ -71,5 +71,6 @@ public class Game extends ApplicationAdapter {
 		bottomBar.dispose();
 		player.dispose();
 		spawner.dispose();
+		storage.dispose();
 	}
 }
