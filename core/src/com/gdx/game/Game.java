@@ -35,7 +35,7 @@ public class Game extends ApplicationAdapter {
 		storage = new ElementStorage();
 		storage.create();
 
-		spawner = new Spawner(player, bottomBar);
+		spawner = new Spawner(player, bottomBar, storage);
 		spawner.create();
 	}
 
