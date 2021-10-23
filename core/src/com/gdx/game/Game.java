@@ -28,7 +28,7 @@ public class Game extends ApplicationAdapter {
 		bottomBar = new BottomBar();
 		bottomBar.create();
 
-		player = new Player();
+		player = new Player(bottomBar);
 		player.create();
 
 		storage = new ElementStorage();

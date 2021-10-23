@@ -9,16 +9,18 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Player {
     ShapeRenderer renderer;
-
+    BottomBar bottomBar;
     int x = 0;
+
+    public Player(BottomBar bar){
+        this.bottomBar = bar;
+    }
 
     public void create() {
         renderer = new ShapeRenderer();
     }
 
-    public void render(SpriteBatch batch) {
-        batch.begin();
-
+    void input() {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             if(x - GameConstants.PLAYER_SPEED > 0)
                 x -= GameConstants.PLAYER_SPEED;
@@ -31,14 +33,18 @@ public class Player {
             else
                 x = GameConstants.SCREEN_WIDTH - GameConstants.PLAYER_WIDTH;
         }
+    }
 
+
+    public void render(SpriteBatch batch) {
+
+        input();
+
+        batch.begin();
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Color.BLUE);
         renderer.rect(x,50,GameConstants.PLAYER_WIDTH,GameConstants.PLAYER_HEIGHT);
         renderer.end();
-
-
-
         batch.end();
     }
 
