@@ -28,7 +28,7 @@ public class BottomBar {
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Color.WHITE);
-        renderer.rect(0, 0, GameConstants.SCREEN_WIDTH, 50);
+        renderer.rect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.BOTTOMBAR_HEIGHT);
         renderer.end();
 
         batch.end();

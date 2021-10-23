@@ -12,6 +12,10 @@ public class Player {
     BottomBar bottomBar;
     int x = 0;
 
+    public int getX() {
+        return x;
+    }
+
     public Player(BottomBar bar){
         this.bottomBar = bar;
     }

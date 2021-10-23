@@ -17,6 +17,7 @@ public class Game extends ApplicationAdapter {
 	BottomBar bottomBar;
 	Player player;
 	ElementStorage storage;
+	Spawner spawner;
 
 	@Override
 	public void create () {
@@ -33,11 +34,14 @@ public class Game extends ApplicationAdapter {
 
 		storage = new ElementStorage();
 		storage.create();
+
+		spawner = new Spawner(player, bottomBar);
+		spawner.create();
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(0.9f, 0.9f, 0.9f, 1);
 //		batch.begin();//image
 //		batch.draw(img, 0, 0);
 //		batch.end();
@@ -52,6 +56,7 @@ public class Game extends ApplicationAdapter {
 //		batch.begin();//text
 //		font.draw(batch, "Hello LibGDX", 10,20);
 //		batch.end();
+		spawner.render(batch);
 		bottomBar.render(batch);
 		player.render(batch);
 	}
@@ -65,5 +70,6 @@ public class Game extends ApplicationAdapter {
 
 		bottomBar.dispose();
 		player.dispose();
+		spawner.dispose();
 	}
 }
