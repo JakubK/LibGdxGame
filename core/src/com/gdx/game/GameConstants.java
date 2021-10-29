@@ -12,4 +12,8 @@ public final class GameConstants {
     public static int ELEMENT_SPEED = 5;
 
     public static int BOTTOMBAR_HEIGHT = 50;
+
+    public static int ENTITY_COUNT = 5;
+    public static int ENTITY_START_X = 50;
+    public static int ENTITY_SPACING = 100;
 }
