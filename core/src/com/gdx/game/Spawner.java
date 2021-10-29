@@ -1,7 +1,5 @@
 package com.gdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -13,76 +11,59 @@ public class Spawner {
     BitmapFont font;
     Random r;
     int ypos;
-    int xpos;
 
     Player player;
     BottomBar bottomBar;
     ElementStorage storage;
 
     Element targetElement;
-    Element currentElement;
+    FallingEntity[] entities;
+    Element[] elements;
 
     public Spawner(Player player, BottomBar bottomBar, ElementStorage storage) {
         this.player = player;
         this.bottomBar = bottomBar;
         this.storage = storage;
+
+        r = new Random();
+
+        entities = new FallingEntity[GameConstants.ENTITY_COUNT];
+        for(int i = 0;i < GameConstants.ENTITY_COUNT;i++) {
+            entities[i] = new FallingEntity(player, this);
+        }
     }
 
     public void create() {
         font = new BitmapFont();
         renderer = new ShapeRenderer();
-        r = new Random();
 
-        resetTarget();
-        resetSpawner();
+        for(int i = 0;i < GameConstants.ENTITY_COUNT;i++) {
+            entities[i].load();
+        }
+
+        resetTurn();
     }
 
     public void render(SpriteBatch batch) {
-        batch.begin();
-
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.RED);
-        renderer.rect(xpos, ypos, GameConstants.ELEMENT_WIDTH, GameConstants.ELEMENT_HEIGHT);
-
-        renderer.end();
-
-        ypos -= GameConstants.ELEMENT_SPEED;
-        batch.end();
-
-        batch.begin();
-        font.setColor(Color.BLACK);
-        font.draw(batch,currentElement.Symbol, xpos, ypos + GameConstants.ELEMENT_HEIGHT);
-        batch.end();
-
-
-        if(ypos <= GameConstants.BOTTOMBAR_HEIGHT + GameConstants.PLAYER_HEIGHT) {
-            //Check for collision
-            int playerX = player.getX();
-            if (playerX < xpos + GameConstants.ELEMENT_WIDTH && playerX + GameConstants.PLAYER_WIDTH > xpos) {
-                //Collision occured -> Check if target === current
-                if(targetElement.Symbol.equals(currentElement.Symbol)) {
-                    bottomBar.addPoint();
-                    resetSpawner();
-                } else {
-                    Gdx.app.log("Game Over", "The end");
-                }
-            }
+        for(int i = 0;i < GameConstants.ENTITY_COUNT;i++) {
+            entities[i].render(batch,GameConstants.ENTITY_START_X + i * GameConstants.ENTITY_SPACING,ypos, elements[i].Symbol, targetElement.Symbol);
         }
+        ypos -= GameConstants.ELEMENT_SPEED;
         if(ypos < GameConstants.BOTTOMBAR_HEIGHT) //Element is under Bottombar
         {
-            resetSpawner();
+            resetTurn();
         }
-
     }
 
-    public void resetSpawner() {
-        xpos = Math.abs(r.nextInt()) % (GameConstants.SCREEN_WIDTH - GameConstants.ELEMENT_WIDTH);
+    public void addPoint() {
+        bottomBar.addPoint();
+        resetTurn();
+    }
+
+    public void resetTurn() {
         ypos = GameConstants.SCREEN_HEIGHT - GameConstants.ELEMENT_HEIGHT;
-        currentElement = storage.getRandomElement();
-    }
-
-    public void resetTarget() {
-        targetElement = storage.getRandomElement();
+        elements = storage.getRandomElements();
+        targetElement = elements[Math.abs(r.nextInt()) % elements.length];
         bottomBar.setText(targetElement.Name);
     }
 
