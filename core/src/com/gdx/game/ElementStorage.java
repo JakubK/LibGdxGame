@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ElementStorage {
     ArrayList<Element> elements;
@@ -29,9 +31,15 @@ public class ElementStorage {
         scanner.close();
     }
 
-    public Element getRandomElement() {
-        return elements.get(Math.abs(r.nextInt()) % elements.size());
+    public Element[] getRandomElements() {
+        Collections.shuffle(elements);
+        return elements
+                .stream()
+                .limit(GameConstants.ENTITY_COUNT)
+                .collect(Collectors.toList())
+                .toArray(new Element[GameConstants.ENTITY_COUNT]);
     }
+
 
     public void dispose() {
         elements.clear();
