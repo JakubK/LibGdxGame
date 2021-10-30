@@ -1,13 +1,12 @@
 package com.gdx.game;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class BottomBar {
-
-    ShapeRenderer renderer;
+    Texture frame;
     BitmapFont font;
 
     int points = 0;
@@ -16,7 +15,7 @@ public class BottomBar {
 
     public void create()
     {
-        renderer = new ShapeRenderer();
+        frame = new Texture("frame.png");
         font = new BitmapFont();
     }
 
@@ -28,25 +27,24 @@ public class BottomBar {
         points++;
     }
 
+
+    int frameWidth = 250;
     public void render(SpriteBatch batch)
     {
         batch.begin();
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.WHITE);
-        renderer.rect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.BOTTOMBAR_HEIGHT);
-        renderer.end();
+        batch.draw(frame,GameConstants.SCREEN_WIDTH/2 - frameWidth/2,0,frameWidth,GameConstants.BOTTOMBAR_HEIGHT);
         batch.end();
 
         batch.begin();
-        font.setColor(Color.BLACK);
-        font.draw(batch,"Points: " + points, 30, 30);
+        font.setColor(Color.WHITE);
+        font.draw(batch,"Points: " + points, GameConstants.SCREEN_WIDTH/2 - frameWidth/6, 30);
         font.draw(batch, "Next element: " + nextElementText, GameConstants.SCREEN_WIDTH - 200, 30);
         batch.end();
     }
 
     public void dispose()
     {
-        renderer.dispose();
+        frame.dispose();
         font.dispose();
     }
 }
