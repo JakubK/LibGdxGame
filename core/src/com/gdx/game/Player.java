@@ -43,7 +43,7 @@ public class Player {
         input();
 
         batch.begin();
-        batch.draw(img,x,50,GameConstants.PLAYER_WIDTH,GameConstants.PLAYER_HEIGHT);
+        batch.draw(img,x,GameConstants.BOTTOMBAR_HEIGHT,GameConstants.PLAYER_WIDTH,GameConstants.PLAYER_HEIGHT);
         batch.end();
     }
 

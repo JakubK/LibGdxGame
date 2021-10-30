@@ -32,13 +32,13 @@ public class BottomBar {
     public void render(SpriteBatch batch)
     {
         batch.begin();
-        batch.draw(frame,GameConstants.SCREEN_WIDTH/2 - frameWidth/2,0,frameWidth,GameConstants.BOTTOMBAR_HEIGHT);
+        batch.draw(frame,GameConstants.SCREEN_WIDTH/2 - frameWidth/2,0,frameWidth,GameConstants.BOTTOMBAR_FRAME_HEIGHT);
         batch.end();
 
         batch.begin();
         font.setColor(Color.WHITE);
-        font.draw(batch,"Points: " + points, GameConstants.SCREEN_WIDTH/2 - frameWidth/6, 30);
-        font.draw(batch, "Next element: " + nextElementText, GameConstants.SCREEN_WIDTH - 200, 30);
+        font.draw(batch,"Points: " + points, GameConstants.SCREEN_WIDTH/2 - frameWidth/6, 35);
+        font.draw(batch, "Next element: " + nextElementText, GameConstants.SCREEN_WIDTH - 200, 35);
         batch.end();
     }
 
