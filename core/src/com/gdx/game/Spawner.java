@@ -44,14 +44,21 @@ public class Spawner {
         resetTurn();
     }
 
+    boolean spawning = true;
+    public void end() {
+        spawning = false;
+    }
+
     public void render(SpriteBatch batch) {
-        for(int i = 0;i < GameConstants.ENTITY_COUNT;i++) {
-            entities[i].render(batch,GameConstants.ENTITY_START_X + i * GameConstants.ENTITY_SPACING,ypos, elements[i].Symbol, targetElement.Symbol);
-        }
-        ypos -= GameConstants.ELEMENT_SPEED;
-        if(ypos < GameConstants.BOTTOMBAR_HEIGHT) //Element is under Bottombar
-        {
-            resetTurn();
+        if(spawning) {
+            for (int i = 0; i < GameConstants.ENTITY_COUNT; i++) {
+                entities[i].render(batch, GameConstants.ENTITY_START_X + i * GameConstants.ENTITY_SPACING, ypos, elements[i].Symbol, targetElement.Symbol);
+            }
+            ypos -= GameConstants.ELEMENT_SPEED;
+            if (ypos < GameConstants.BOTTOMBAR_HEIGHT) //Element is under Bottombar
+            {
+                resetTurn();
+            }
         }
     }
 

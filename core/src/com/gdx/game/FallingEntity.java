@@ -20,7 +20,7 @@ public class FallingEntity {
 
     public void load() {
         font = new BitmapFont();
-        frame = new Texture("symbol.png");
+        frame = new Texture("element.png");
     }
 
     public void render(SpriteBatch batch, int x, int y, String symbol, String targetSymbol) {
@@ -32,7 +32,7 @@ public class FallingEntity {
         //text
         batch.begin();
         font.setColor(Color.WHITE);
-        font.draw(batch,symbol, x, y + GameConstants.ELEMENT_HEIGHT);
+        font.draw(batch,symbol, x + (GameConstants.ELEMENT_WIDTH/2) - 10, y + (GameConstants.ELEMENT_HEIGHT/2) + 4);
         batch.end();
 
         //Check for collision
@@ -44,7 +44,7 @@ public class FallingEntity {
                 if(targetSymbol.equals(symbol)) {
                     spawner.addPoint();
                 } else {
-                    Gdx.app.log("Game Over", "The end");
+                    spawner.end();
                 }
             }
         }
