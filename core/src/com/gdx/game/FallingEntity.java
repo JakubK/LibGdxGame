@@ -2,13 +2,13 @@ package com.gdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class FallingEntity {
-    ShapeRenderer renderer;
     BitmapFont font;
+    Texture frame;
 
     Player player;
     Spawner spawner;
@@ -19,22 +19,19 @@ public class FallingEntity {
     }
 
     public void load() {
-        renderer = new ShapeRenderer();
         font = new BitmapFont();
+        frame = new Texture("symbol.png");
     }
 
     public void render(SpriteBatch batch, int x, int y, String symbol, String targetSymbol) {
         //frame
         batch.begin();
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.RED);
-        renderer.rect(x, y, GameConstants.ELEMENT_WIDTH, GameConstants.ELEMENT_HEIGHT);
-        renderer.end();
+        batch.draw(frame,x,y, GameConstants.ELEMENT_WIDTH, GameConstants.ELEMENT_HEIGHT);
         batch.end();
 
         //text
         batch.begin();
-        font.setColor(Color.BLACK);
+        font.setColor(Color.WHITE);
         font.draw(batch,symbol, x, y + GameConstants.ELEMENT_HEIGHT);
         batch.end();
 
@@ -54,7 +51,7 @@ public class FallingEntity {
     }
 
     public void dispose() {
-        renderer.dispose();
+        frame.dispose();
         font.dispose();
     }
 }

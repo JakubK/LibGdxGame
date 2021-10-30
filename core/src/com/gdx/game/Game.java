@@ -13,7 +13,6 @@ public class Game extends ApplicationAdapter {
 	BitmapFont font;
 	ShapeRenderer shapeRenderer;
 
-
 	BottomBar bottomBar;
 	Player player;
 	ElementStorage storage;
@@ -22,7 +21,7 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("background.jpg");
 		font = new BitmapFont();
 		shapeRenderer = new ShapeRenderer();
 
@@ -42,6 +41,9 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void render () {
 		ScreenUtils.clear(0.9f, 0.9f, 0.9f, 1);
+		batch.begin();
+		batch.draw(img,0,0);
+		batch.end();
 //		batch.begin();//image
 //		batch.draw(img, 0, 0);
 //		batch.end();

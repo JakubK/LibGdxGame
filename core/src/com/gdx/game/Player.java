@@ -1,14 +1,12 @@
 package com.gdx.game;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Player {
-    ShapeRenderer renderer;
+    Texture img;
     BottomBar bottomBar;
     int x = 0;
 
@@ -21,7 +19,7 @@ public class Player {
     }
 
     public void create() {
-        renderer = new ShapeRenderer();
+        img = new Texture("player.png");
     }
 
     void input() {
@@ -45,14 +43,11 @@ public class Player {
         input();
 
         batch.begin();
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.BLUE);
-        renderer.rect(x,50,GameConstants.PLAYER_WIDTH,GameConstants.PLAYER_HEIGHT);
-        renderer.end();
+        batch.draw(img,x,50,GameConstants.PLAYER_WIDTH,GameConstants.PLAYER_HEIGHT);
         batch.end();
     }
 
     public void dispose() {
-        renderer.dispose();
+        img.dispose();
     }
 }

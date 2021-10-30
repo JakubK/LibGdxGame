@@ -31,20 +31,16 @@ public class BottomBar {
     public void render(SpriteBatch batch)
     {
         batch.begin();
-
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Color.WHITE);
         renderer.rect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.BOTTOMBAR_HEIGHT);
         renderer.end();
-
         batch.end();
 
         batch.begin();
         font.setColor(Color.BLACK);
         font.draw(batch,"Points: " + points, 30, 30);
-
         font.draw(batch, "Next element: " + nextElementText, GameConstants.SCREEN_WIDTH - 200, 30);
-
         batch.end();
     }
 
